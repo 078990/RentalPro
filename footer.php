@@ -2,8 +2,8 @@
 		<div class="col-md-4 footer-left-agileits">
 			<h3>Address</h3>
 				<ul>
-					<li><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Woodvale Grove, Westlands - Nairobi, Kenya</li>
-					<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@Companyonline.net">info@example.com</a></li>
+					<li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> - Kigali, Rwanda-</li>
+					<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="inestoni25@gmail.com">inestoni25@gmail.com</a></li>
 					<!-- <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> +(254) 754 235 535</li> -->
 				</ul>
 		</div>
@@ -30,7 +30,7 @@
 <!-- //footer --> 
 	<div class="copyright-w3-agile">
 		<div class="container">
-			<p>© 2018 company | All rights reserved.</p>
+			<p>© 2024 company | All rights reserved.</p>
 			<div class="clearfix"> </div>
 		</div>
 	</div>

@@ -1,14 +1,14 @@
 <?php 
 
     //a page name
-    $pgnm='Nyumbani: Add a new house';
+    $pgnm='Premier: Add a new house';
     $error=' ';
 
     //start sessions 
     ob_start();
 
     //require a connector
-    require_once "functions/db.php";
+    include "functions/db.php";
 
     //require the global file for errors
     require_once "functions/errors.php";
@@ -25,44 +25,92 @@
      /*****************************************************
                        action add a house
      ***************************************************/
-                       if (isset($_POST['submit'])) {
-                           #admin requests to add a house
-
-                            //gather the data
-                        $hname=is_username($_POST['hname']);
-                        $numOfRooms=uncrack($_POST['numOfRooms']);
-                        $numOfbRooms=uncrack($_POST['numOfbRooms']);
-                        $rent=uncrack($_POST['rent']);
-                        $location=uncrack($_POST['location']);
-                        $status=uncrack($_POST['status']);
-
-                        $timesnap=date('Y-m-d : H:i:s');
-
-                                        //insert the data
-                                        $sq="INSERT into `houses` 
-                            (`house_name`,`number_of_rooms`,`rent_amount`,`location`,`num_of_bedrooms`,`house_status`) values('$hname','$numOfRooms','$rent','$location','$numOfbRooms','$status');";
-
-                             $sql_transactions="INSERT into `transactions` (`actor`,`time`,`description`)
-                            VALUES ('Admin ($username)', '$timesnap','$username added a new house ($hname) with $numOfRooms rentable units, and $numOfbRooms bedrooms per unit located in $location')";
-
-                            $mysqli->autocommit(FALSE);
-                            $state=true;
-
-                            $mysqli->query($sq)?null: $state=false;
-                            $mysqli->query($sql_transactions)?null: $state=false;
-
-                            if ($state) {
-                                $mysqli->commit();
-                                #head to index with error state 1
-                                header('location:houses.php?state=1');
-                            }else{
-                                //rollback changes
-                                $mysqli -> rollback();
-                                //return to page with error state 2
-                                header('location:new-house.php?state=2');
-                            }
-
-                       }
+    if (isset($_POST['submit'])) {
+        // Gather the data
+        $hname = is_username($_POST['hname']);
+        $image = is_username($_POST['image']);
+        $numOfRooms = uncrack($_POST['numOfRooms']);
+        $numOfbRooms = uncrack($_POST['numOfbRooms']);
+        $rent = uncrack($_POST['rent']);
+        $location = uncrack($_POST['location']);
+        $status = uncrack($_POST['status']);
+        
+        $timesnap = date('Y-m-d : H:i:s');
+    
+        // Handle the image upload
+        $targetDir = "images/"; // Directory where the file will be saved
+        $targetFile = $targetDir . basename($_FILES["image"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    
+        // Check if image file is an actual image or fake image
+        $check = getimagesize($_FILES["image"]["tmp_name"]);
+        if($check !== false) {
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    
+        // Check if file already exists
+        if (file_exists($targetFile)) {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+    
+        // Check file size (5MB max)
+        if ($_FILES["image"]["size"] > 5000000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+    
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+    
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        // If everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
+                $image = basename($_FILES["image"]["name"]); // Save the filename to the database
+                
+                // Insert the data into the houses table
+                $sq = "INSERT into houses 
+                        (house_name, image, number_of_rooms, rent_amount, location, num_of_bedrooms, house_status) 
+                        VALUES ('$hname', '$image', '$numOfRooms', '$rent', '$location', '$numOfbRooms', '$status')";
+    
+                // Insert the transaction
+                $sql_transactions = "INSERT into transactions 
+                        (actor, time, description)
+                        VALUES ('Admin ($username)', '$timesnap', '$username added a new house ($hname) with $numOfRooms rentable units, and $numOfbRooms bedrooms per unit located in $location')";
+    
+                $mysqli->autocommit(FALSE);
+                $state = true;
+    
+                $mysqli->query($sq) ? null : $state = false;
+                $mysqli->query($sql_transactions) ? null : $state = false;
+    
+                if ($state) {
+                    $mysqli->commit();
+                    // Redirect to the houses page with a success state
+                    header('location:houses.php?state=1');
+                } else {
+                    // Rollback changes
+                    $mysqli->rollback();
+                    // Redirect to the new house page with an error state
+                    header('location:new-house.php?state=2');
+                }
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+    }
+    
 
    
     /*******************************************************
@@ -88,7 +136,8 @@
                         <ol class="breadcrumb">
                             <li><a href="index.php">Dashboard</a></li>
                             <li><a href="houses.php">Houses</a></li>
-                            <li class="active">New</li>
+                            <li><a href="new-house.php">new</a></li>
+
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -106,18 +155,19 @@
                             <p class="text-muted m-b-30 font-13"> Fill in the form below: </p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="new-house.php" method="post">
-                                        <!-- <div class="form-group">
-                                            <label for="exampleInputuname">User Name</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="ti-user"></i></div>
-                                                <input type="text" class="form-control" id="exampleInputuname" placeholder="Username"> </div>
-                                        </div> -->
+                                    <form action="new-house.php" method="post" enctype="multipart/form-data">
+                                      
                                         <div class="form-group">
                                             <label for="hname">House Name: *</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
                                                 <input type="text" required name="hname" class="form-control" id="hname" placeholder="Enter house name" required=""> </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="hname">House image: *</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+                                                <input type="file"  name="image" class="form-control" required="" > </div>
                                         </div>
 
                                         <div class="form-group">
@@ -133,7 +183,7 @@
                                                 <div class="input-group-addon"><i class="fa fa-bed"></i></div>
                                                 <input type="number" min="0" required name="numOfbRooms" class="form-control" id="numOfbRooms" placeholder="Bedrooms. e.g. 0" required=""> </div>
                                         </div>
-
+                       
                                         <div class="form-group">
                                             <label for="rent">Rent amount (PM): *</label>
                                             <div class="input-group">
@@ -149,7 +199,7 @@
                                                 <select id="location" name="location" class="form-control">
                                                     <option value="">**Select its location**</option>
                                                     <?php
-                                                        $sq0="SELECT * FROM `locations` order by `id` asc";
+                                                        $sq0="SELECT * FROM locations order by id asc";
                                                         $rec=mysqli_query($conn,$sq0);
                                                         while ($row=mysqli_fetch_array($rec,MYSQLI_BOTH)) {
                                                             $place=$row['location_name'];
@@ -163,13 +213,21 @@
                                         <div class="form-group">
                                             <label for="status">House Status: *</label>
                                             <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-home"></i></div>
+                                                <div class="input-group-addon"><i class="fa fa-home"></i>
+                                            </div>
                                                 <select id="status" name="status" class="form-control">
                                                     <option value="Vacant">Vacant</option>
                                                     <option value="Occupied">Occupied</option>
                                                 </select>
                                                 </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="imga">House details: *</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+                                                <input type="file"  name="imga" class="form-control" required="" > </div>
+                                        </div>
+                                      
 
                                         <button type="submit" name="submit" class="btn btn-success btn-lg waves-effect waves-light m-r-10 center"><i class="fa fa-plus-circle fa-lg"></i> Add this House</button>
                                     </form>
@@ -233,7 +291,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Company Admin </footer>
+            <footer class="footer text-center"> 2024 &copy; Company Admin </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>

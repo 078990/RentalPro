@@ -2,7 +2,7 @@
     ob_start();
     require_once "functions/db.php";
     //page name
-    $pgnm='Nyumbani: Dashboard';
+    $pgnm='Premierreal estate: Dashboard';
     $error=' '; //error variable
 
     //require the global file for errors
@@ -36,7 +36,8 @@
     //tenants
     $sql_tenants = "SELECT * FROM tenants";
     $query_tenants = mysqli_query($connection, $sql_tenants);
-
+    //clients
+    
     //invoices
     $sql_invoices = "SELECT * FROM invoices";
     $query_invoices = mysqli_query($connection, $sql_invoices);
@@ -75,18 +76,13 @@
 
 ?>
 
-
-
-       
-
-
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <!-- salute the admin -->
-                        <h4 class="page-title"><?php echo 'Hujambo '.$username.',';?></h4> </div>
+                        <h4 class="page-title"><?php echo 'Hello '.$username.',';?></h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> 
                         <ol class="breadcrumb">
                             <li onclick=""><a href="#">Dashboard</a></li>
@@ -234,100 +230,7 @@
                 <!--row -->
 
                 <!-- /.row to show snapshot of major statuses -->
-                <div class="row">
-                    <div class="col-md-12 col-lg-12 col-sm-12">
-                        <div class="white-box">
-                            <div class="row row-in">
-
-                                <div class="col-lg-3 col-sm-6 row-in-br">
-                                    <div class="w3-green w3-card-4" style="padding:0.4em;margin-top:0.2em;margin-bottom:0.2em;">
-                                    <div class="w3-white" style="border-radius: 1em;">
-                                    <div class="col-in row">
-                                        <div class="col-md-6 col-sm-6 col-xs-6"> <i class="fa fa-briefcase fa-5x"></i>
-                                            <h5 class="text-muted vb">Month Collections (<?php echo date('Y-m')?>)</h5> </div>
-                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <h3 class="counter text-right m-t-15 text-success" style="font-size: 2.2em;">
-                                                <?php
-                                                    $month=date('Y-m'); 
-                                                    $total=0;
-                                                    $sq_pay="SELECT `amountPaid`, `dateofPayment` from `payments` where `dateofPayment` like '%$month%'";
-                                                    $rec=mysqli_query($conn,$sq_pay);
-                                                    while ($row=mysqli_fetch_array($rec,MYSQLI_BOTH)) {
-                                                        $total+=$row['amountPaid'];
-                                                    }
-                                                    echo "$total";
-                                                ?>
-                                                   <br> <span style="margin-top: 0.1em; font-size:0.5em"> (KES) </span>
-                                                </h3> 
-                                         </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                                </div>
-
-                                <div class="col-lg-3 col-sm-6 row-in-br w3-white">
-                                    <div class="w3-red w3-card-4" style="padding:0.4em; margin-top:0.2em;margin-bottom:0.2em;">
-                                    <div class="w3-white" style="border-radius: 1em;">
-                                    <div class="col-in row">
-                                        <div class="col-md-6 col-sm-6 col-xs-6"> <i class="fa fa-usd fa-5x"></i>
-                                            <h5 class="text-muted vb">Pending Invoices</h5> </div>
-                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <h3 class="counter text-right m-t-15 text-danger" style="font-size: 2.2em;">
-                                                <?php
-                                                    $total=0;
-                                                    $sq_pay="SELECT `amountDue`, `status` from `invoices` where `status`='unpaid'";
-                                                    $rec=mysqli_query($conn,$sq_pay);
-                                                    while ($row=mysqli_fetch_array($rec,MYSQLI_BOTH)) {
-                                                        $total+=$row['amountDue'];
-                                                    }
-                                                    echo "$total";
-                                                ?>
-                                                   <br> <span style="margin-top: 0.1em; font-size:0.5em"> (KES) </span>
-                                                </h3> 
-                                         </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                                </div>
-
-                                <div class="col-lg-3 col-sm-6 row-in-br w3-white">
-                                    <div class="w3-orange w3-card-4" style="padding:0.4em;margin-top:0.2em;margin-bottom:0.2em;">
-                                    <div class="w3-white" style="border-radius: 1em;">
-                                    <div class="col-in row">
-                                        <div class="col-md-6 col-sm-6 col-xs-6"> <i class="fa fa-usd fa-5x"></i>
-                                            <h5 class="text-muted vb">Tenant Balances</h5> </div>
-                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <h3 class="counter text-right m-t-15" style="font-size: 2.2em;color:orange;">
-                                                <?php
-                                                   
-                                                    $total=0;
-                                                    $sq_pay="SELECT `amountDue`, `status` from `invoices` where `status`='paid'";
-                                                    $rec=mysqli_query($conn,$sq_pay);
-                                                    while ($row=mysqli_fetch_array($rec,MYSQLI_BOTH)) {
-                                                        $total+=$row['amountDue'];
-                                                    }
-                                                    echo "$total";
-                                                ?>
-                                                   <br> <span style="margin-top: 0.1em; font-size:0.5em"> (KES) </span>
-                                                </h3> 
-                                         </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                                </div>
-
-                                <div class="col-lg-3 col-sm-6 row-in-br w3-white">
-                                    <div class="w3-blue w3-card-4" style="padding:0.4em;margin-top:0.2em;margin-bottom:0.2em;">
-                                    <div class="w3-white" style="border-radius: 1em;">
-                                    <div class="col-in row">
-                                        <div class="col-md-6 col-sm-6 col-xs-6"> <i class="fa fa-home fa-5x"></i>
-                                            <h5 class="text-muted vb">Rentable Units</h5> </div>
+               
                                          <div class="col-md-6 col-sm-6 col-xs-6">
                                             <h3 class="counter text-right m-t-15 text-info" style="font-size: 2.2em;">
                                                 <?php
@@ -529,7 +432,7 @@
                             </h3> -->
                             <div class="row sales-report">
                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h2>Nyumbani  <?php echo 2000+date('y'); ?></h2>
+                                    <h2>Premier real estate  <?php echo 2000+date('y'); ?></h2>
                                     <p>Blog Posts</p>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6 ">

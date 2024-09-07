@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="images/icon.png">
+<link rel="icon" href="images/radis.jpg">
 <title>Company</title>
 <!-- custom-theme -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,8 +29,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="w3_agile_banner_top">
 				<div class="agile_phone_mail">
 					<ul>
-						<li><i class="fa fa-phone" aria-hidden="true"></i>+(254) 002 100 500</li>
-						<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@Companyonline.net">info@example.com</a></li>
+						<li><i class="fa fa-phone" aria-hidden="true"></i>+(250) 786 697 640</li>
+						<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:inestoni25@gmail.com">inestoni25@gmail.com</a></li>
 					</ul>
 				</div>
 			</div>
@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<h1><a class="navbar-brand" href="index.php"><img src="images/logo.png" class="img-responsive"></a></h1>
+						<h1><a class="navbar-brand" href="index.php"><img src="images/logo.jpg" class="img-responsive"></a></h1>
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">

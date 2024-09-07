@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <link rel="icon" href="images/icon.png">
-<title>Nyumbani homes</title>
+
+<title>Premier real estate</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- custom-theme -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -30,8 +33,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="w3_agile_banner_top">
 				<div class="agile_phone_mail">
 					<ul>
-						<li><i class="fa fa-phone" aria-hidden="true"></i>+(254) 123 456 789</li>
-						<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@nyumbanihomes.com">info@nyumbanihomes.com</a></li>
+						<li><i class="fa fa-phone" aria-hidden="true"></i>+(250) 786697640</li>
+						<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:inestoni25@gmail.com">inestoni25@gmail.com</a></li>
 					</ul>
 				</div>
 			</div>
@@ -44,7 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<h1><a class="navbar-brand" href="index.php"><img src="images/logo.png" class="img-responsive"></a></h1>
+						<h1><a class="navbar-brand" href="index.php"><img src="images/logo.jpg" class="img-responsive"></a></h1><br><br>
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
@@ -95,6 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
 					</div>
 				</section>
+			
 				<!-- flexSlider -->
 					<script defer src="js/jquery.flexslider.js"></script>
 					<script type="text/javascript">
@@ -111,6 +115,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
+
+
 <!-- //banner -->
 
 <!-- content -->
@@ -136,6 +142,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			?>	
 
 </div>	
+<div class="container my-5">
+    <h1 class="text-center mb-4">Available Houses</h1>
+    <div class="row">
+        <?php
+        // Connect to database
+        $con = mysqli_connect("localhost", "root", "", "company");
+        if (!$con) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        // Query to select all houses
+        $select = mysqli_query($con, "SELECT * FROM houses");
+        $num = mysqli_num_rows($select);
+
+        // Check if there are any results
+        if ($num > 0) {
+            // Loop through each house
+            while ($data = mysqli_fetch_array($select)) {
+                // Generate link based on houseID
+                $house_link = "admin/house-details.php?houseID=" . $data['houseID'];
+        ?>
+                <div class="col-md-4 mb-4">
+                    <!-- Link to house details -->
+                    <a href="<?php echo $house_link; ?>" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm">
+						<img src="images/<?php echo $data['image']; ?>" class="card-img-top" alt="<?php echo $data['house_name']; ?>" style="height: 200px; object-fit: cover;">
+						<div class="card-body">
+                                <h5 class="card-title"><?php echo $data['house_name']; ?></h5>
+                                <p class="card-text">
+                                    <strong>Location:</strong> <?php echo $data['location']; ?><br>
+                                   <strong>Rent:</strong> $<?php echo $data['rent_amount']; ?><br>
+                                  
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+        <?php
+            }
+        } else {
+            echo "<div class='col-12 text-center'><p>No houses found</p></div>";
+        }
+
+        // Close the database connection
+        mysqli_close($con);
+        ?>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <!-- //process -->
 
 
