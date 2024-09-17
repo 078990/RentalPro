@@ -28,7 +28,7 @@ if (isset($_GET['houseID'])) {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('images/roomd1.jpg');
+            background-image: url('./images/roomd1.jpg');
             /* Light chocolate-like background */
             color: #333;
         }
