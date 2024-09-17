@@ -105,7 +105,8 @@
                             <td><?php echo htmlspecialchars($data['email']); ?></td>
                             <td>
                                 <!-- Action buttons for Edit and Delete -->
-                                <a href="respond.php?id=<?php echo $data['id']; ?>" class="btn btn-success btn-sm">Respond</a> 
+                                <a href="respond.php?id=<?php echo $data['id']; ?>" class="btn btn-success btn-sm">Respond</a>  
+                                <!-- wanyeretse file irimo fun -->
                             
                             </td>
                         </tr>
