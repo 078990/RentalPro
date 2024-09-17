@@ -1,7 +1,7 @@
 <?php 
 
     //a page name
-    $pgnm='Nyumbani: Admit a tenant';
+    $pgnm='Premier: Admit a tenant';
     $error=' ';
 
     //start sessions 
@@ -50,18 +50,18 @@
 
                         //format phone number
                         if(substr($phone, 0,1)=='0'){
-                            $phone='+254'.substr($phone,1,strlen($phone));
+                            $phone='+250'.substr($phone,1,strlen($phone));
                         }
 
                         //derive house ID and number of rooms from $house variable
 
-                        $houseid=substr($house, 0,strpos($house, '_'));
+                        $houseID=substr($house, 0,strpos($house, '_'));
                         $noOfRooms=substr($house, strpos($house, '_')+1,strlen($house));
                         $timesnap=date('Y-m-d : H:i:s');
 
                         
 
-                        $sq1="SELECT `house_name`,`rent_amount` from `houses` where `houseID`='$houseid'";
+                        $sq1="SELECT `house_name`,`rent_amount` from `houses` where `houseID`='$houseID'";
                         $rec_house=mysqli_query($conn,$sq1);
                         $rec_item=mysqli_fetch_array($rec_house,MYSQLI_BOTH);
 

@@ -12,7 +12,7 @@
                         <!-- /input-group -->
                     </li>
                     <li class="user-pro">
-                        <a href="#" class="waves-effect"><img src="../plugins/images/user.jpg" alt="user-img" class="img-circle"> <span class="hide-menu"> <?php echo $username; ?><span class="fa arrow"></span></span>
+                        <a href="#" class="waves-effect"><img src="../plugins/images/radis.jpg" alt="user-img" class="img-circle"> <span class="hide-menu"> <?php echo $username; ?><span class="fa arrow"></span></span>
                         </a>
                         <ul class="nav nav-second-level">
                             <li><a href="settings.php"><i class="ti-settings"></i> Account Setting</a></li>
@@ -32,27 +32,13 @@
 
                     <li><a href="#" class="waves-effect"><i class="fa fa-users fa-2x"></i> <span class="hide-menu"> || Tenants<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="new-tenant.php">Add tenant</a></li>
-                            <li><a href="tenants.php">View tenants</a></li>
+                          
+                            <li><a href="report.php">View tenants</a></li>
                             
                         </ul>
                     </li>
 
-                    <li><a href="#" class="waves-effect"><i class="fa fa-credit-card fa-2x"></i> <span class="hide-menu"> || Invoices <span class="fa arrow"></span></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="new-invoice.php">Add invoice</a></li>
-                            <li><a href="invoices.php">View invoices</a></li>
-                            
-                        </ul>
-                    </li>
-
-                    <li><a href="#" class="waves-effect"><i class="fa fa-money fa-2x"></i> <span class="hide-menu"> || Payments <span class="fa arrow"></span></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="new-payment.php">New Payment</a></li>
-                            <li><a href="payments.php">View Payments</a></li>
-                            
-                        </ul>
-                    </li>
+                 
 
                      <li><a href="inbox.php" class="waves-effect"><i class="fa fa-envelope fa-2x"></i> <span class="hide-menu">  ||  Messages</span></a>
                     </li>

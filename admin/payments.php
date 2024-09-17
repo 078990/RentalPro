@@ -116,12 +116,8 @@
                                                     echo '
                                                     <thead>
                                                     <tr>
-                                                        <th>Invoice No.</th>
-                                                        <th>Tenant</th>
-                                                        <th>House</th>
-                                                        <th>Expected Amount</th>
-                                                        <th>Paid Amount</th>
-                                                        <th>Balance</th>
+                                                        <th>Invoice No.</th>                                                          
+                                                        <th>Paid Amount</th> 
                                                         <th>Date Paid</th>
                                                         <th>Comments</th>
                                                         <th>Actions</th>
@@ -131,12 +127,8 @@
 
                                                 <tfoot>
                                                     <tr>
-                                                        <th>Invoice No.</th>
-                                                        <th>Tenant</th>
-                                                        <th>House</th>
-                                                        <th>Expected Amount</th>
-                                                        <th>Paid Amount</th>
-                                                        <th>Balance</th>
+                                                        <th>Invoice No.</th>                    
+                                                        <th>Paid Amount</th>                                                       
                                                         <th>Date Paid</th>
                                                         <th>Comments</th>
                                                         <th>Actions</th>
@@ -152,11 +144,9 @@
 
                                         <tr>
                                             <td>'.$row["invoiceNumber"].'</td>
-                                            <td>'.$row["tenant_name"].'</td>
-                                            <td>'.$row["house_name"].'</td>
-                                            <td>'.$row["expectedAmount"].'</td>
+                                             
                                             <td>'.$row["amountPaid"].'</td>
-                                            <td>'.$row["balance"].'</td>
+                                         
                                             <td>'.$row["dateofPayment"].'</td>
                                             <td>'.$row["comment"].'</td>
                                             <td><a href="#"><i class="fa fa-tras"  data-toggle="modal" data-target="#responsive-modal'.$row["paymentID"].'" title="delete" style="color:red;"></i></a></td>
@@ -173,7 +163,7 @@
                                                         <div class="modal-footer">
 
                                                         <form action="payments.php" method="post">
-                                                        <input type="hidden" name="tenID" value="'.
+                                                        <input type="hidden" name="id" value="'.
                                                         $row["paymentID"].'"/>
                                                             <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
                                                             <button type="submit" name="deleteTenant" class="btn btn-danger waves-effect waves-light">Delete and Forget</button>

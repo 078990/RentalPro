@@ -2,7 +2,7 @@
     ob_start();
     require_once "functions/db.php";
     //page name
-    $pgnm='Premierreal estate: Dashboard';
+    $pgnm='Premierrealestate: Dashboard';
     $error=' '; //error variable
 
     //require the global file for errors
@@ -39,14 +39,6 @@
     //clients
     
     //invoices
-    $sql_invoices = "SELECT * FROM invoices";
-    $query_invoices = mysqli_query($connection, $sql_invoices);
-
-    //payments
-    $sql_payments = "SELECT * FROM payments";
-    $query_payments = mysqli_query($connection, $sql_payments);
-
-
 
     //other querries
 
@@ -174,51 +166,21 @@
                                                 <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%"> <span class="sr-only">50% Complete (success)</span> </div>
                                             </div>
                                             <p>
-                                                <span class="text-primary"><a href="tenants.php"> <i class="fa fa-eye"></i> View details</a></span> 
+                                                <span class="text-primary"><a href="report.php"> <i class="fa fa-eye"></i> View Tenants</a></span> 
                                                 || 
-                                                <span class="text-primary">
-                                                <a href="new-tenant.php"> <i class="fa fa-plus-circle"></i> Add</a></span>
+                                               
                                             </p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3 col-sm-6 row-in-br">
-                                    <div class="col-in row">
-                                        <div class="col-md-6 col-sm-6 col-xs-6"> <i class="fa fa-credit-card fa-5x text-megna"></i>
-                                            <h5 class="text-muted vb">Invoices</h5> </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <h3 class="counter text-right m-t-15 text-megna"><?php echo mysqli_num_rows($query_invoices);?></h3> </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-megna" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%"> <span class="sr-only">50% Complete (success)</span> </div>
-                                            </div>
-                                            <p>
-                                                <span class="text-megna"><a href="invoices.php"> <i class="fa fa-eye"></i> View details</a></span> 
-                                                || 
-                                                <span class="text-megna">
-                                                <a href="new-invoice.php"> <i class="fa fa-plus-circle"></i> Add</a></span>
-                                            </p>
+                               
+                                        
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3 col-sm-6  b-0">
-                                    <div class="col-in row">
-                                        <div class="col-md-6 col-sm-6 col-xs-6"> <i class="fa fa-money fa-5x text-danger"></i>
-                                            <h5 class="text-muted vb">Payments</h5> </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <h3 class="counter text-right m-t-15 text-danger"><?php echo mysqli_num_rows($query_payments);?></h3> </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%"> <span class="sr-only">50% Complete (success)</span> </div>
-                                            </div>
-                                             <p>
-                                                <span class="text-danger"><a href="payments.php"> <i class="fa fa-eye"></i> View details</a></span> 
-                                                || 
-                                                <span class="text-danger">
-                                                <a href="new-payment.php"> <i class="fa fa-plus-circle"></i> Add</a></span>
-                                            </p>
+                         
                                         </div>
                                     </div>
                                 </div>

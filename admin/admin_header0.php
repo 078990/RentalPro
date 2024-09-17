@@ -43,7 +43,7 @@
             margin-left:auto;
             margin-right: auto;
             text-align: center;
-            max-width: 500px;
+            max-width: 300px;
 
         }
     </style>
@@ -64,7 +64,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-                <div class="top-left-part"><a class="logo" href="index.php"><b><img src="../plugins/images/icon.png" style="width: 30px; height: 30px;" alt="home" /></b><span class="hidden-xs"><b>Premier real estate</b></span></a></div>
+                <div class="top-left-part"><a class="logo" href="index.php"><b><img src="admin/images/logo.png" style="width: 30px; height: 30px;" alt="home" /></b><span class="hidden-xs"><b></b></span></a></div>
                 <ul class="nav navbar-top-links navbar-left hidden-xs">
                     <i><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></i>
                     <li>
@@ -83,4 +83,4 @@
             <!-- /.navbar-header -->
             <!-- /.navbar-top-links -->
             <!-- /.navbar-static-side -->
-        </nav>
+        </nav> 

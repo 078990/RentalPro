@@ -11,46 +11,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="images/favicon.ico">
 
-    <!-- Fonts -->
+    <!-- Fonts and Stylesheets -->
     <title>Premier Real Estate</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style type="text/css">
+        body {
+            background-image: url('images/bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f8f9fa;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            font-size: 16px;
+            color: #f8f9fa;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #dddddd;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        td {
+            background-color: #495057;
+        }
+
+        a {
+            color: #17a2b8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
-<style type="text/css">
-    body {
-        background-image: url('images/bg.jpg');
-    }
-
-    .content {
-        border-collapse: collapse;
-        margin: 25px 0;
-        font-size: 0.5cm;
-        min-width: 300px;
-        border-bottom: 1px solid #dddddd;
-    }
-
-    th {
-        background-color: black;
-        color: white;
-        text-align: left;
-        font-weight: bold;
-    }
-
-    table {
-        align-content: center;
-    }
-
-    h1 {
-        text-align: center;
-        color: chocolate;
-    }
-</style>
-
 <body>
-    <!-- Page Loader -->
+    <div class="container">
+        <h1>View Client's Information</h1>
 
-    <center>
-        <h1>View Client's Information</h1><br>
-        <table border="2" class="content">
+        <table class="content">
             <thead>
                 <tr>
                     <th>No</th>
@@ -70,14 +99,14 @@
                     while ($data = mysqli_fetch_array($select)) {
                 ?>
                         <tr>
-                            <td><?php echo $data['id']; ?></td>
-                            <td><?php echo $data['names']; ?></td>
-                            <td><?php echo $data['phone']; ?></td>
-                            <td><?php echo $data['email']; ?></td>
+                            <td><?php echo htmlspecialchars($data['id']); ?></td>
+                            <td><?php echo htmlspecialchars($data['names']); ?></td>
+                            <td><?php echo htmlspecialchars($data['phone']); ?></td>
+                            <td><?php echo htmlspecialchars($data['email']); ?></td>
                             <td>
                                 <!-- Action buttons for Edit and Delete -->
-                                <a href="respond.php?id=<?php echo $data['id']; ?>" style="color: green;">respond</a> |
-                                
+                                <a href="respond.php?id=<?php echo $data['id']; ?>" class="btn btn-success btn-sm">Respond</a> 
+                            
                             </td>
                         </tr>
                 <?php
@@ -88,7 +117,16 @@
                 ?>
             </tbody>
         </table>
-    </center>
+
+        <div class="btn-container">
+            <a href="index.php" class="btn btn-primary">back home</a>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

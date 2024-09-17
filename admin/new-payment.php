@@ -1,7 +1,7 @@
 <?php 
 
     //a page name
-    $pgnm='Nyumbani: New Payment';
+    $pgnm='Realestate: New Payment';
     $error=' ';
     $timesnap=date('Y-m-d : H:i:s');
 
@@ -80,8 +80,8 @@
                             $sql_ten="UPDATE `tenants` set `account`='$account' where `tenantID`='$tenantId'"; //update tenant account balance
 
                             $sql_payment="INSERT INTO `payments`
-                                (`tenantID`, `invoiceNumber`, `expectedAmount`, `amountPaid`, `balance`, `mpesaCode`, `dateofPayment`, `comment`) 
-                                VALUES ('$tenantId','$invoiceNumber','$amountExpected','$amountPaid','$balance','$mpesaCode','$paymentDate','$comment')";//inserts a new payment
+                                (`tenantID`, `invoiceNumber`, `expectedAmount`, `amountPaid`, `balance`, `accountCode`, `dateofPayment`, `comment`) 
+                                VALUES ('$tenantId','$invoiceNumber','$amountExpected','$amountPaid','$balance','$accountCode','$paymentDate','$comment')";//inserts a new payment
 
                             $sql_transactions="INSERT into `transactions` (`actor`,`time`,`description`)
                             VALUES ('Admin ($username)', '$timesnap','$username added payment of $amountPaid for $tnm, under invoice ID: $invoiceNumber')";
@@ -107,7 +107,7 @@
                                 $Key="4W26PsOgnySBnwf9CZJgEo2K5PyVq9KSBSiLfgCH8w3BHNE0mI";
                                 $senderId="SMARTLINK";
                                 $tophonenumber=$phone;
-                                $finalmessage="Greetings ".$firstName.", This is a confirmation that your rent payment of KES. ".$amountPaid." has been received and updated. Remaining balance to pay is KES. ".$balance.". Thank you.";
+                                $finalmessage="Greetings ".$firstName.", This is a confirmation that your rent payment of RWf. ".$amountPaid." has been received and updated. Remaining balance to pay is RWF. ".$balance.". Thank you.";
 
                                 $url="https://sms.movesms.co.ke/api/compose?";
                                 $postData = array(
@@ -177,7 +177,7 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title"><?php echo 'Howdy, '.$username.'!';?></h4> </div>
+                        <h4 class="page-title"><?php echo ''.$username.'!';?></h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> 
                         <ol class="breadcrumb">
                             <li><a href="index.php">Dashboard</a></li>
@@ -234,10 +234,10 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="mpesa">MPESA CODE (Optional): </label>
+                                            <label for="account">ACCOUNT CODE (Optional): </label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-                                                <input type="text" min="0" name="mpesa" class="form-control" id="mpesa" placeholder="Mpesa code e.g. XX00XXYY" style=" background-color: #000; color: #fff; font-weight: 700;text-transform: uppercase;"> </div>
+                                                <input type="text" min="0" name="account" class="form-control" id="account" placeholder="account code e.g. XX00XXYY" style=" background-color: #000; color: #fff; font-weight: 700;text-transform: uppercase;"> </div>
                                         </div>
 
                                         <div class="form-group">
@@ -310,7 +310,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Company Admin </footer>
+            <footer class="footer text-center"> 2024 &copy; Company Admin </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>

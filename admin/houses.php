@@ -97,7 +97,6 @@ if (is_logged_in_temporary()) {
                                             <th>Location</th>
                                             <th>Bedrooms</th>
                                             <th>House Status</th>
-                                            
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -111,7 +110,6 @@ if (is_logged_in_temporary()) {
                                             <th>Location</th>
                                             <th>Bedrooms</th>
                                             <th>House Status</th>
-                                           
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot>
@@ -129,10 +127,8 @@ if (is_logged_in_temporary()) {
                                             <td>'.$row["location"].'</td>
                                             <td>'.$row["num_of_bedrooms"].'</td>
                                             <td>'.$row["house_status"].'</td>
-                                            <td>'.$row["imga"].'</td>
-                                            <td>'.$row["imgb"].'</td>
-                                            <td>'.$row["imgc"].'</td>
-                                            <td>'.$row["imgd"].'</td>
+                                           
+                                 
                                             <td><a href="#"><i class="fa fa-trash" data-toggle="modal" data-target="#responsive-modal'.$row["houseID"].'" title="remove" style="color:red;"></i></a></td>
 
                                             <!-- /.modal -->

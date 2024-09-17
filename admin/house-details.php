@@ -22,7 +22,6 @@ if (isset($_GET['houseID'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Details</title>
 
-
     <style>
         /* Global Styles */
         body {
@@ -159,23 +158,9 @@ if (isset($_GET['houseID'])) {
             color: white;
         }
 
-        /* Styling for the images */
-        .images {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 10px;
-        }
+       
 
-        .images img {
-            width: 220px;
-            /* Adjust the width of each image */
-            height: auto;
-            /* Maintain aspect ratio */
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
+        
     </style>
 
 
@@ -187,7 +172,7 @@ if (isset($_GET['houseID'])) {
 
     <header>
         <ul>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="../index.php">Home</a></li>
             <li><a href="about.php">About Us</a></li>
             <li><a href="contact.php">Contact</a></li>
             
@@ -226,8 +211,8 @@ if (isset($_GET['houseID'])) {
             <div class="form">
                 <h4>Interested? Get in touch!</h4>
                 <form action="req.php" method="POST">
-                    <input type="text" name="Names" placeholder="Names" required><br>
-                    <input type="number" name="Phone" placeholder="Phone" required><br>
+                    <input type="text" name="cname" placeholder="Names" required><br>
+                    <input type="number" name="phone" placeholder="Phone" required><br>
                     <input type="email" name="email" placeholder="Email" required><br><br>
                     <button type="submit" value="submit" name="submit">Send</button>
                 </form>

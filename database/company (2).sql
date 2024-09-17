@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2024 at 05:39 PM
+-- Generation Time: Sep 16, 2024 at 08:28 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,18 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL,
-  `role` varchar(50) NOT NULL DEFAULT 'level 0',
   `email` varchar(200) NOT NULL,
-  `password` varchar(500) NOT NULL,
-  `date` datetime NOT NULL DEFAULT current_timestamp()
+  `password` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `name`, `role`, `email`, `password`, `date`) VALUES
-(5, 'Ines', 'level-0', 'inestoni25@gmail.com', '$2y$12$EcXNA8UHc53gWrW0suAB2.b028O7ItuHyLqXrQN6j00ax7OHVBF3i', '2021-05-22 10:56:20');
+INSERT INTO `admin` (`id`, `name`, `email`, `password`) VALUES
+(5, 'Ines', 'inestoni25@gmail.com', '$2y$12$EcXNA8UHc53gWrW0suAB2.b028O7ItuHyLqXrQN6j00ax7OHVBF3i');
 
 -- --------------------------------------------------------
 
@@ -70,7 +68,8 @@ INSERT INTO `clients` (`id`, `names`, `phone`, `email`) VALUES
 (7, 'yvan', 786697640, 'yvanhirwa2020@gmail.'),
 (8, 'yvan', 786697640, 'yvanhirwa2020@gmail.'),
 (9, 'mugisha', 786697640, 'yvanhirwa2020@gmail.'),
-(10, 'mugisha', 786697640, 'yvanhirwa2020@gmail.');
+(10, 'mugisha', 786697640, 'yvanhirwa2020@gmail.'),
+(11, 'Samuel', 7899009, 'samy23@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -100,15 +99,6 @@ CREATE TABLE `contacts` (
   `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `contacts`
---
-
-INSERT INTO `contacts` (`id`, `names`, `email`, `message`, `date`) VALUES
-(1, 'Ethredah', 'ethredah@gmail.com', 'Hello there Ushauri team.', '2018-07-27 16:57:59'),
-(2, 'Chao', 'chao@gmail.com', 'Hi there!!', '2018-07-27 16:57:59'),
-(4, 'James Mlamba', 'jaymo@gmail.com', 'I am interested in a meeting.', '2018-07-28 01:38:22');
-
 -- --------------------------------------------------------
 
 --
@@ -119,10 +109,6 @@ CREATE TABLE `houses` (
   `houseID` int(11) NOT NULL,
   `house_name` text NOT NULL,
   `image` blob NOT NULL,
-  `imga` blob NOT NULL,
-  `imgb` blob NOT NULL,
-  `imgc` blob NOT NULL,
-  `imgd` blob NOT NULL,
   `number_of_rooms` int(10) NOT NULL DEFAULT 1,
   `rent_amount` double NOT NULL,
   `location` text NOT NULL,
@@ -134,11 +120,16 @@ CREATE TABLE `houses` (
 -- Dumping data for table `houses`
 --
 
-INSERT INTO `houses` (`houseID`, `house_name`, `image`, `imga`, `imgb`, `imgc`, `imgd`, `number_of_rooms`, `rent_amount`, `location`, `num_of_bedrooms`, `house_status`) VALUES
-(30, 'House', 0x686f7573652e6a7067, '', '', '', '', 7, 350, 'Kinyinya', 4, 'Vacant'),
-(31, 'Appartment', 0x6b6162312e6a7067, '', '', '', '', 4, 300, 'Kimihurura', 2, 'Vacant'),
-(32, 'Apartment', 0x6b6979312e6a7067, '', '', '', '', 5, 300, 'kabuga', 3, 'Vacant'),
-(33, 'Apartment', 0x6b616e312e6a7067, '', '', '', '', 5, 300, 'kabuga', 3, 'Vacant');
+INSERT INTO `houses` (`houseID`, `house_name`, `image`, `number_of_rooms`, `rent_amount`, `location`, `num_of_bedrooms`, `house_status`) VALUES
+(37, 'Cottage', 0x636f7474312e6a7067, 5, 300, 'Kinyinya', 3, 'Vacant'),
+(38, 'Cottage', 0x636f7474322e6a7067, 5, 2500, 'Kiyovu', 3, 'Vacant'),
+(39, 'Mill1', 0x6d696c6c312e6a7067, 5, 200, 'Kiyovu', 3, 'Vacant'),
+(40, 'Mill2', 0x6d696c6c322e6a7067, 6, 260, 'kabuga', 4, 'Occupied'),
+(41, 'Mill4', 0x6d696c6c342e6a7067, 6, 300, 'Kiyovu', 4, 'Vacant'),
+(42, 'Milton', 0x6d696c6c352e6a7067, 7, 450, 'Kinyinya', 5, 'Occupied'),
+(43, 'Villa', 0x76696c6c61342e6a7067, 8, 500, 'kabuga', 6, 'Vacant'),
+(44, 'Cottage', 0x662e6a7067, 6, 450, 'Kinyinya', 4, 'Vacant'),
+(45, 'Cottage', 0x636f7474342e6a7067, 6, 400, 'Kinyinya', 4, 'Vacant');
 
 -- --------------------------------------------------------
 
@@ -426,7 +417,19 @@ INSERT INTO `transactions` (`id`, `actor`, `time`, `description`, `seen`) VALUES
 (63, 'Admin (inestoni25)', '2024-09-06 : 17:35:11', 'inestoni25 added a new house (Appartment) with 4 rentable units, and 2 bedrooms per unit located in Kimihurura', 'YES'),
 (64, 'Admin (inestoni25)', '2024-09-07 : 04:48:39', 'inestoni25 added a new house (Apartment) with 5 rentable units, and 3 bedrooms per unit located in kabuga', 'YES'),
 (65, 'Admin (inestoni25)', '2024-09-07 : 04:50:20', 'inestoni25 added payment of 300 for , under invoice ID: INV20240903143324', 'YES'),
-(66, 'Admin (inestoni25)', '2024-09-07 : 05:25:17', 'inestoni25 added a new house (Apartment) with 5 rentable units, and 3 bedrooms per unit located in kabuga', 'YES');
+(66, 'Admin (inestoni25)', '2024-09-07 : 05:25:17', 'inestoni25 added a new house (Apartment) with 5 rentable units, and 3 bedrooms per unit located in kabuga', 'YES'),
+(67, 'Admin (inestoni25)', '2024-09-13 : 13:23:47', 'inestoni25 added a new house (Villa) with 8 rentable units, and 5 bedrooms per unit located in kabuga', 'NO'),
+(68, 'Admin (inestoni25)', '2024-09-13 : 14:25:29', 'inestoni25 added a new house (Villa) with 8 rentable units, and 5 bedrooms per unit located in kabuga', 'NO'),
+(69, 'Admin (inestoni25)', '2024-09-13 : 14:39:38', 'inestoni25 added a new house (Villa) with 8 rentable units, and 5 bedrooms per unit located in kabuga', 'NO'),
+(70, 'Admin (inestoni25)', '2024-09-16 : 14:20:34', 'inestoni25 added a new house (Cottage) with 5 rentable units, and 3 bedrooms per unit located in Kinyinya', 'NO'),
+(71, 'Admin (inestoni25)', '2024-09-16 : 14:21:11', 'inestoni25 added a new house (Cottage) with 5 rentable units, and 3 bedrooms per unit located in Kiyovu', 'NO'),
+(72, 'Admin (inestoni25)', '2024-09-16 : 18:03:52', 'inestoni25 added a new house (Mill1) with 5 rentable units, and 3 bedrooms per unit located in Kiyovu', 'NO'),
+(73, 'Admin (inestoni25)', '2024-09-16 : 18:04:48', 'inestoni25 added a new house (Mill2) with 6 rentable units, and 4 bedrooms per unit located in kabuga', 'NO'),
+(74, 'Admin (inestoni25)', '2024-09-16 : 18:05:52', 'inestoni25 added a new house (Mill4) with 6 rentable units, and 4 bedrooms per unit located in Kiyovu', 'NO'),
+(75, 'Admin (inestoni25)', '2024-09-16 : 18:10:17', 'inestoni25 added a new house (Milton) with 7 rentable units, and 5 bedrooms per unit located in Kinyinya', 'NO'),
+(76, 'Admin (inestoni25)', '2024-09-16 : 18:10:55', 'inestoni25 added a new house (Villa) with 8 rentable units, and 6 bedrooms per unit located in kabuga', 'NO'),
+(77, 'Admin (inestoni25)', '2024-09-16 : 18:11:51', 'inestoni25 added a new house (Cottage) with 6 rentable units, and 4 bedrooms per unit located in Kinyinya', 'NO'),
+(78, 'Admin (inestoni25)', '2024-09-16 : 18:13:21', 'inestoni25 added a new house (Cottage) with 6 rentable units, and 4 bedrooms per unit located in Kinyinya', 'NO');
 
 -- --------------------------------------------------------
 
@@ -546,7 +549,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -564,7 +567,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `houses`
 --
 ALTER TABLE `houses`
-  MODIFY `houseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `houseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `locations`
@@ -600,7 +603,7 @@ ALTER TABLE `tenants`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

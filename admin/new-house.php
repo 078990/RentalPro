@@ -221,12 +221,7 @@
                                                 </select>
                                                 </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="imga">House details: *</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                                <input type="file"  name="imga" class="form-control" required="" > </div>
-                                        </div>
+                                    
                                       
 
                                         <button type="submit" name="submit" class="btn btn-success btn-lg waves-effect waves-light m-r-10 center"><i class="fa fa-plus-circle fa-lg"></i> Add this House</button>
